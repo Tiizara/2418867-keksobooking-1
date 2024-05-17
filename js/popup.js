@@ -1,4 +1,4 @@
-const mapContainer = document.querySelector('#map-canvas');
+// const mapContainer = document.querySelector('#map-canvas');
 const popupTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
@@ -25,21 +25,21 @@ const generate = (elements) => {
   //   }
   // });
 
-  for(const result of elements.offer.photos) {
-    popupElement.querySelector('.popup__photos').src = result;
-  }
+  // for(const result of elements.offer.photos) {
+  //   popupElement.querySelector('.popup__photos').src = result;
+  // }
 
 
   return popupElement;
 };
 
 
-const renderMap = (data) => {
-  const dataFragment = document.createDocumentFragment();
-  data.splice(0,1).forEach((element) => {
-    dataFragment.append(generate(element));
-  });
-  mapContainer.append(dataFragment);
-};
+// const renderPopup = (data) => {
+//   const dataFragment = document.createDocumentFragment();
+//   data.splice(0,1).forEach((element) => {
+//     dataFragment.append(generate(element));
+//   });
+//   mapContainer.append(dataFragment);
+// };
 
-export {renderMap};
+export {generate};

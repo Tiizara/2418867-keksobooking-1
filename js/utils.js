@@ -2,12 +2,22 @@ const adForm = document.querySelector('.ad-form');
 const inputs = adForm.querySelectorAll('input');
 const mapFilters = document.querySelector('.map__filters');
 
-const disabled = () => {
-  adForm.classList.add('ad-form--disabled');
-  inputs.forEach((input) => {
-    input.disabled = true;
-  });
-  mapFilters.classList.add('map__filters--disabled');
+const disableForm = (isDasabled = true) => {
+  if(!isDasabled) {
+    adForm.classList.add('ad-form--disabled');
+    inputs.forEach((input) => {
+      input.disabled = true;
+    });
+  }
 };
 
-export {disabled, adForm};
+const disableFilter = (isDasabled = true) => {
+  if(!isDasabled) {
+    mapFilters.classList.add('map__filters--disabled');
+  }
+};
+
+disableFilter(true);
+disableForm(true);
+
+export {disableFilter, disableForm, adForm};
