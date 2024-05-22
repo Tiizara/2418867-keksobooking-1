@@ -1,7 +1,16 @@
 import { generate } from './popup.js';
 
-async function mapInit (data) {
-  const map = await L.map('map-canvas')
+const icon = L.icon({
+  iconUrl: './img/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
+let map;
+let markerGroup;
+
+async function mapInit() {
+  map = await L.map('map-canvas')
     .setView({
       lat: 35.6894875,
       lng: 139.6917064,
@@ -13,17 +22,13 @@ async function mapInit (data) {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     },
   ).addTo(map);
+  markerGroup = L.layerGroup().addTo(map);
+}
 
-
-  const icon = L.icon({
-    iconUrl: './img/main-pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
-
+const renderMapLayer = (data) => {
+  markerGroup.clearLayers();
   data.forEach((element) => {
-    console.log(element);
-    const {lat, lng} = element.location;
+    const { lat, lng } = element.location;
     const marker = L.marker(
       {
         lat,
@@ -34,10 +39,10 @@ async function mapInit (data) {
       },
     );
     marker
-      .addTo(map)
+      .addTo(markerGroup)
       .bindPopup(generate(element));
   });
-}
+};
 
-export{mapInit};
+export { mapInit, renderMapLayer };
 
