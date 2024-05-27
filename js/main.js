@@ -1,6 +1,6 @@
 import './utils.js';
 import './pristine.js';
-import { filterMap } from './filter.js';
+import {setFilter} from './filter.js';
 import { disableFilter, disableForm } from './utils.js';
 import { getData } from './fetch.js';
 import { mapInit, renderMapLayer } from './map.js';
@@ -16,10 +16,12 @@ mapInit()
     //4. загружаются данные
     getData()
       .then((data) => {
+        console.log(data);
         renderMapLayer(data);
-        filterMap(data);
+
         //5. при успешной загрузке данных - разблокируется фильтр
         disableFilter(false);
+        setFilter(data);
       })
       .catch((err) => {
         console.log(err);
