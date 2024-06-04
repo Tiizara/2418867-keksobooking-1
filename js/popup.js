@@ -3,12 +3,20 @@ const popupTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
 
+const HOUSE_TYPE = {
+  hotel: 'Отель',
+  bungalow: 'Бунгало',
+  flat: 'Квартира',
+  house: 'Дом',
+  palace: 'Дворец',
+};
+
 const generate = (elements) => {
   const popupElement = popupTemplate.cloneNode(true);
   popupElement.querySelector('.popup__title').textContent = elements.offer.title;
   popupElement.querySelector('.popup__text--address').textContent = elements.offer.address;
   popupElement.querySelector('.popup__text--price').textContent = `${elements.offer.price}₽/ночь`;
-  popupElement.querySelector('.popup__type').value = `${elements.offer.type}`;
+  popupElement.querySelector('.popup__type').textContent = `${HOUSE_TYPE[elements.offer.type]}`;
   popupElement.querySelector('.popup__text--capacity').textContent = `${(elements.offer.rooms)} комнаты для ${elements.offer.guests} гостей`;
   popupElement.querySelector('.popup__text--time').textContent = `Заезд после ${elements.offer.checkin}, выезд до ${elements.offer.checkout}`;
   popupElement.querySelector('.popup__description').textContent = elements.offer.description;

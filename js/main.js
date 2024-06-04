@@ -3,7 +3,7 @@ import './pristine.js';
 import {setFilter} from './filter.js';
 import { disableFilter, disableForm } from './utils.js';
 import { getData } from './fetch.js';
-import { mapInit, renderMapLayer } from './map.js';
+import { mapInit, renderMapLayer, markerMovee } from './map.js';
 //1.страница в неактивном состоянии
 disableFilter();
 disableForm();
@@ -13,6 +13,7 @@ mapInit()
   .then(() => {
     //3. при успешной загрузке карты - активизируется форма
     disableForm(false);
+    markerMovee();
     //4. загружаются данные
     getData()
       .then((data) => {

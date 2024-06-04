@@ -1,4 +1,5 @@
 import { generate } from './popup.js';
+import { movee } from './pristine.js';
 
 const icon = L.icon({
   iconUrl: './img/pin.svg',
@@ -8,6 +9,7 @@ const icon = L.icon({
 
 let map;
 let markerGroup;
+let markerMoveend;
 
 async function mapInit() {
   map = await L.map('map-canvas')
@@ -22,7 +24,9 @@ async function mapInit() {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     },
   ).addTo(map);
+
   markerGroup = L.layerGroup().addTo(map);
+  markerMoveend = L.layerGroup().addTo(map);
 }
 
 const renderMapLayer = (data) => {
@@ -44,5 +48,26 @@ const renderMapLayer = (data) => {
   });
 };
 
-export { mapInit, renderMapLayer };
+const markerMovee = () => {
+  markerMoveend.clearLayers();
+  const marker = L.marker(
+    {
+      lat: 35.6894875,
+      lng: 139.6917064,
+    },
+    {
+      draggable: true,
+    },
+  );
+
+  marker.addTo(map);
+
+  marker.on('moveend', (evt) => {
+    console.log(evt.target.getLatLng());
+    movee(evt.target.getLatLng());
+  });
+};
+
+
+export { mapInit, renderMapLayer, markerMovee};
 

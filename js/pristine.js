@@ -1,10 +1,10 @@
 const orderForm = document.querySelector('.ad-form');
 
-
 const pristine = new Pristine(orderForm, {
   classTo: 'ad-form__element',
-  errorClass: 'ad-form__element--invalid',
+  successClass: 'ad-form__item--valid',
   errorTextParent: 'ad-form__element',
+  errorTextClass: 'ad-form__error',
 });
 
 
@@ -18,6 +18,17 @@ pristine.addValidator(
   'От 30 до 100 символов'
 );
 
+
+export const movee = (value) => {
+  orderForm.querySelector('#address').value = value;
+
+  pristine.addValidator(
+    orderForm.querySelector('#address'),
+    value,
+    'Укажите ползунком координаты'
+  );
+};
+
 const priceField = orderForm.querySelector('#price');
 const minPrice = {
   'bungalow': 0,
@@ -27,9 +38,10 @@ const minPrice = {
   'palace':10000
 };
 
+
 function validatePrice (value) {
   const unit = orderForm.querySelector('[name="type"]');
-  return value.length && +(value) >= minPrice[unit.value];
+  return +(value) >= minPrice[unit.value];
 }
 
 function getPriceErrorMessage () {
