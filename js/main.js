@@ -1,6 +1,7 @@
 import './utils.js';
 import './pristine.js';
-import {setFilter} from './filter.js';
+import './upload-img.js';
+import { setFilter } from './filter.js';
 import { disableFilter, disableForm } from './utils.js';
 import { getData } from './fetch.js';
 import { mapInit, renderMapLayer, markerMovee } from './map.js';
