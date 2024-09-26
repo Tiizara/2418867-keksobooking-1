@@ -5,10 +5,10 @@
   "description": "Личный проект «Кексобукинг» от HTML Academy",
   "repository": {
     "type": "git",
-    "url": "git@github.com:htmlacademy-javascript/2418867-keksobooking-1.git"
+    "url": "git@github.com:htmlacademy-javascript/2377367-keksobooking-1.git"
   },
   "bugs": {
-    "url": "https://github.com/htmlacademy-javascript/2418867-keksobooking-1/issues"
+    "url": "https://github.com/htmlacademy-javascript/2377367-keksobooking-1/issues"
   },
   "devDependencies": {
     "browser-sync": "2.27.11",

@@ -1,12 +1,18 @@
-import { adForm } from './utils.js';
-import { sending } from './fetch.js';
+const form = document.querySelector('.ad-form');
+const fieldsets = form.querySelectorAll('fieldset');
 
-const setUserFormSubmit = () => {
-  adForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const formData = new FormData(evt.target);
-    sending(formData);
+const turnOffForm = () => {
+  form.classList.add('ad-form--disabled');
+  fieldsets.forEach((fieldset) => {
+    fieldset.disabled = true;
   });
 };
 
-setUserFormSubmit();
+const turnOnForm = () => {
+  form.classList.remove('ad-form--disabled');
+  fieldsets.forEach((fieldset) => {
+    fieldset.disabled = false;
+  });
+};
+
+export { form, turnOffForm, turnOnForm };

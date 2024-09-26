@@ -33,4 +33,5 @@ fileChooserHous.addEventListener('change', () => {
     previewHousePhoto.append(photo);
     photo.src = URL.createObjectURL(file);
   }
+
 });

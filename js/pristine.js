@@ -1,4 +1,7 @@
 const orderForm = document.querySelector('.ad-form');
+const timeGroup = document.querySelector('.ad-form__element--time');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
 
 const pristine = new Pristine(orderForm, {
   classTo: 'ad-form__element',
@@ -8,7 +11,7 @@ const pristine = new Pristine(orderForm, {
 });
 
 
-function validateAd (value) {
+function validateAd(value) {
   return value.length >= 30 && value.length <= 100;
 }
 
@@ -24,8 +27,7 @@ export const movee = (value) => {
 
   pristine.addValidator(
     orderForm.querySelector('#address'),
-    value,
-    'Укажите ползунком координаты'
+    value
   );
 };
 
@@ -35,23 +37,23 @@ const minPrice = {
   'flat': 1000,
   'hotel': 3000,
   'house': 5000,
-  'palace':10000
+  'palace': 10000
 };
 
 
-function validatePrice (value) {
+function validatePrice(value) {
   const unit = orderForm.querySelector('[name="type"]');
   return +(value) >= minPrice[unit.value];
 }
 
-function getPriceErrorMessage () {
+function getPriceErrorMessage() {
   const unit = orderForm.querySelector('[name="type"]');
   return `минимальная цена за ночь ${minPrice[unit.value]}`;
 }
 
 pristine.addValidator(priceField, validatePrice, getPriceErrorMessage);
 
-function onTypeChange () {
+function onTypeChange() {
   priceField.placeholder = minPrice[this.value];
   pristine.validate(priceField);
 }
@@ -63,4 +65,13 @@ orderForm
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
+});
+
+
+timeGroup.addEventListener('change', (evt) => {
+  if (evt.target.id === 'timein') {
+    timeOut.querySelector(`option[value="${evt.target.value}"]`).selected = true;
+  } else if (evt.target.id === 'timeout') {
+    timeIn.querySelector(`option[value="${evt.target.value}"]`).selected = true;
+  }
 });
